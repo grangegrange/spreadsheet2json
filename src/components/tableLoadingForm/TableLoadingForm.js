@@ -65,28 +65,24 @@ class TableLoadingForm extends Component {
 
                 <div className={styles.inputs}>
 
-                    {
-                        !pending
-                            ?  <div className={styles.inputsRow}>
-                                    <div className={styles.inputLink}>
-                                        <Input
-                                            name={'link'}
-                                            placeholder={'Ссылка на таблицу'}
-                                            value={tableLink}
-                                            onChange={(e) => this.handleInputChange(e, 'tableLink')}
-                                        />
-                                    </div>
-                                    <div className={styles.inputName}>
-                                        <Input
-                                            name={'name'}
-                                            placeholder={'Название таблицы'}
-                                            value={tableName}
-                                            onChange={(e) => this.handleInputChange(e, 'tableName')}
-                                        />
-                                    </div>
-                               </div>
-                            : <Loader />
-                    }
+                    <div className={styles.inputsRow}>
+                        <div className={styles.inputLink}>
+                            <Input
+                                name={'link'}
+                                placeholder={'Ссылка на таблицу'}
+                                value={tableLink}
+                                onChange={(e) => this.handleInputChange(e, 'tableLink')}
+                            />
+                        </div>
+                        <div className={styles.inputName}>
+                            <Input
+                                name={'name'}
+                                placeholder={'Название таблицы'}
+                                value={tableName}
+                                onChange={(e) => this.handleInputChange(e, 'tableName')}
+                            />
+                        </div>
+                    </div>
 
                     {
                         errors
@@ -99,7 +95,7 @@ class TableLoadingForm extends Component {
                 </div>
 
                 <div className={styles.buttons}>
-                    <Button text={'Загрузить таблицу'} onClick={(e) => this.handleSubmit(e)} />
+                    <Button text={'Загрузить таблицу'} pending={pending} onClick={(e) => this.handleSubmit(e)} />
                 </div>
 
             </form>

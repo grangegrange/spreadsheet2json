@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Button.module.scss';
+import Loader from '../loader/Loader';
 
 function Button(props) {
     return (
@@ -7,8 +8,13 @@ function Button(props) {
             <button
                 className={styles.button}
                 onClick={(e) => props.onClick(e)}
+                disabled={props.pending}
             >
-                {props.text}
+                {
+                    !props.pending
+                        ? <p className={styles.text}>{props.text}</p>
+                        : <Loader />
+                }
             </button>
         </div>
     );
