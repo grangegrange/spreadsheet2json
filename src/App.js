@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 
 import TableLoadingForm from './components/tableLoadingForm/TableLoadingForm'
 
-function App() {
-  return (
-    <div className="App">
+// function App() {
+class App extends Component {
 
-      <div className={"wrapper"}>
+    constructor() {
+        super();
 
-        <TableLoadingForm />
+        this.state = {
+            data: []
+        };
 
-      </div>
+    };
 
 
-    </div>
-  );
+    render() {
+
+        return (
+            <div className="App">
+
+                <div className={"wrapper"}>
+
+                    <TableLoadingForm onResult={data => this.setState({ data })} />
+
+                </div>
+
+
+            </div>
+        );
+
+    }
+
+
 }
 
 export default App;

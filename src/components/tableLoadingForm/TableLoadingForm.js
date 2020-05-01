@@ -13,7 +13,6 @@ class TableLoadingForm extends Component {
         this.state = {
             tableLink: '',
             tableName: '',
-            tableJson: [],
             pending: false,
             errors: ''
         };
@@ -45,10 +44,15 @@ class TableLoadingForm extends Component {
         fetch(`https://sheets.googleapis.com/v4/spreadsheets/${tableId}/values:batchGet?ranges=${this.state.tableName}&key=AIzaSyANhJgoETUA9_wux5ZynNigSYooSGp0-9k`)
             .then(response => response.json())
             .then(data => {
-                (data && data.valueRanges)
-                    ? this.setState({ tableJson: data.valueRanges[0].values, pending: false })
-                    : this.setState({ errors: 'Ошибка загрузки. Проверьте ссылку и название таблицы', pending: false })
+                if (data && data.valueRanges) {
+                    this.props.onResult(data.valueRanges[0].values)
+                    this.setState({ pending: false })
+                } else {
+                    this.props.onResult([])
+                    this.setState({ errors: 'Ошибка загрузки. Проверьте ссылку и название таблицы', pending: false })
+                }
             })
+            // .then(data => this.props.onResult(data))
             .catch(error => {
                 console.log('err:', error);
                 this.setState({ errors: error });
