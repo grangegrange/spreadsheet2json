@@ -1,0 +1,67 @@
+.tableWrapper {
+  width: 1000px;
+  margin: 0 auto 0;
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px #999999;
+  animation: fadeIn .5s, moveDown .5s;
+  max-height: 500px;
+  overflow: scroll;
+
+  .table {
+    width: 100%;
+    border-spacing: 0;
+
+    .tableHeader {
+      background-color: #6c7ae0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      .tableHeaderRow {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        .tableHeaderCell {
+          padding: 15px 10px;
+          text-align: left;
+          color: #ffffff;
+
+          &:nth-child(1){
+            border-top-left-radius: 10px;
+          }
+          &:nth-last-child(1){
+            border-top-right-radius: 10px;
+          }
+        }
+      }
+    }
+
+    .tableRow {
+
+      .tableCell {
+        max-width: 100px;
+        overflow-x: scroll;
+        white-space: nowrap;
+        padding: 15px 10px;
+        cursor: pointer;
+      }
+
+    }
+
+  }
+
+}
+
+
+
+// TODO: animations in mixin
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes moveDown {
+  from { margin-top: -10px; }
+  to   { margin-top: 0; }
+}

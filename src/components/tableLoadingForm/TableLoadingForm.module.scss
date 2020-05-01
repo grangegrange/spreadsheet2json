@@ -1,6 +1,6 @@
 .tableLoadingForm {
   width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
@@ -8,43 +8,44 @@
   animation: fadeIn .5s, moveDown .5s;
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
 
-      .inputs {
-          display: flex;
-          flex-direction: column;
-          width: 75%;
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
 
-          .inputsRow {
-              display: flex;
+    .inputsRow {
+      display: flex;
 
-              .inputLink {
-                width: 300px;
-                margin-right: 20px;
-              }
-              .inputName {
-                width: 200px;
-              }
-
-          }
-
-          .inputsErrors {
-              margin-top: 10px;
-
-              .errorText {
-                  margin: 0;
-                  font-size: 14px;
-                  line-height: 100%;
-                  color: #fb796a;
-              }
-          }
-
+      .inputLink {
+        width: 300px;
+        margin-right: 20px;
+      }
+      .inputName {
+        width: 200px;
       }
 
-      .buttons {
-          display: flex;
-          width: 25%;
-          justify-content: flex-end;
+    }
+
+    .inputsErrors {
+      margin-top: 10px;
+
+      .errorText {
+        margin: 0;
+        font-size: 14px;
+        line-height: 100%;
+        color: #fb796a;
       }
+    }
+
+  }
+
+  .buttons {
+    display: flex;
+    width: 25%;
+    justify-content: flex-end;
+  }
 
 }
 

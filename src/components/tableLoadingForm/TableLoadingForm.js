@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './TableLoadingForm.module.scss';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import Loader from '../loader/Loader';
 
 
 class TableLoadingForm extends Component {
@@ -52,7 +51,6 @@ class TableLoadingForm extends Component {
                     this.setState({ errors: 'Ошибка загрузки. Проверьте ссылку и название таблицы', pending: false })
                 }
             })
-            // .then(data => this.props.onResult(data))
             .catch(error => {
                 console.log('err:', error);
                 this.setState({ errors: error });
