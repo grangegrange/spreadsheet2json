@@ -1,0 +1,20 @@
+.buttonWrapper {
+
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 20px;
+        font-size: 18px;
+        line-height: 100%;
+        color: #ffffff;
+        background-color: #6c7ae0;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        border: 1px solid #6c7ae0;
+        border-radius: 5px;
+    }
+
+}
