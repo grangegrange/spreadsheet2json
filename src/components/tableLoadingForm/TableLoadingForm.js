@@ -26,7 +26,8 @@ class TableLoadingForm extends Component {
     };
 
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
 
         if (this.state.tableLink === '' || this.state.tableName === '') {
             this.setState({ errors: 'Заполните поля. Ссылку и название таблицы. Пример ссылки - https://docs.google.com/spreadsheets/d/1b-FDsgg9Zu6r_rxkdKAYCnEX4ydEtvcb2y3u5WpbeLk/edit#gid=802941491)' });
@@ -60,7 +61,7 @@ class TableLoadingForm extends Component {
         const { tableLink, tableName, pending, errors } = this.state;
 
         return (
-            <div className={styles.tableLoadingForm}>
+            <form className={styles.tableLoadingForm} onSubmit={(e) => this.handleSubmit(e)}>
 
                 <div className={styles.inputs}>
 
@@ -98,10 +99,10 @@ class TableLoadingForm extends Component {
                 </div>
 
                 <div className={styles.buttons}>
-                    <Button text={'Загрузить таблицу'} onClick={() => this.handleSubmit()} />
+                    <Button text={'Загрузить таблицу'} onClick={(e) => this.handleSubmit(e)} />
                 </div>
 
-            </div>
+            </form>
         );
     }
 }
