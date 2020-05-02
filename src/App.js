@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './App.scss';
+import styles from './App.scss';
 import TableLoadingForm from './components/tableLoadingForm/TableLoadingForm';
 import Table from './components/table/Table';
+import JsonWrapper from './components/jsonWrapper/JsonWrapper';
+
 
 
 class App extends Component {
@@ -10,22 +12,26 @@ class App extends Component {
         super();
         this.state = {
             tabledData: [],
-            selectedTableValue: ''
+            selectedTableValue: '',
+            jsonData: {}
         };
     };
 
 
     render() {
-        const { tabledData } = this.state;
+        const { tabledData, jsonData } = this.state;
 
         return (
             <div className="App">
                 <div className={"wrapper"}>
 
-                    <TableLoadingForm onResult={tabledData => this.setState({ tabledData })} />
+                    <TableLoadingForm
+                        onTableResult={tabledData => this.setState({ tabledData })}
+                        onJsonResult={jsonData => this.setState({ jsonData })}
+                    />
 
                     {
-                        (tabledData.length !== 0)
+                        (tabledData.length > 0)
                             ? <Table
                                 data={tabledData}
                                 onSelect={selectedTableValue => this.setState({ selectedTableValue })}
@@ -33,6 +39,11 @@ class App extends Component {
                             : null
                     }
 
+                    {
+                        (Object.keys(jsonData).length > 0)
+                            ?   <JsonWrapper data={jsonData} />
+                            :   null
+                    }
 
                 </div>
             </div>

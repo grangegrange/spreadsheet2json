@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './TableLoadingForm.module.scss';
 import Input from '../input/Input';
 import Button from '../button/Button';
+import JsonUploader from '../jsonUploader/JsonUploader'
 
 
 class TableLoadingForm extends Component {
@@ -44,10 +45,10 @@ class TableLoadingForm extends Component {
             .then(response => response.json())
             .then(data => {
                 if (data && data.valueRanges) {
-                    this.props.onResult(data.valueRanges[0].values)
+                    this.props.onTableResult(data.valueRanges[0].values)
                     this.setState({ pending: false })
                 } else {
-                    this.props.onResult([])
+                    this.props.onTableResult([])
                     this.setState({ errors: 'Ошибка загрузки. Проверьте ссылку и название таблицы', pending: false })
                 }
             })
@@ -65,40 +66,57 @@ class TableLoadingForm extends Component {
         return (
             <form className={styles.tableLoadingForm} onSubmit={(e) => this.handleSubmit(e)}>
 
-                <div className={styles.inputs}>
+                <div className={styles.tableLoadingFormWrapper}>
 
-                    <div className={styles.inputsRow}>
-                        <div className={styles.inputLink}>
-                            <Input
-                                name={'link'}
-                                placeholder={'Ссылка на таблицу'}
-                                value={tableLink}
-                                onChange={(e) => this.handleInputChange(e, 'tableLink')}
-                            />
+                    <div className={styles.inputs}>
+
+                        <div className={styles.inputsRow}>
+                            <div className={styles.inputLink}>
+                                <Input
+                                    name={'link'}
+                                    placeholder={'Ссылка на таблицу'}
+                                    value={tableLink}
+                                    onChange={(e) => this.handleInputChange(e, 'tableLink')}
+                                />
+                            </div>
+                            <div className={styles.inputName}>
+                                <Input
+                                    name={'name'}
+                                    placeholder={'Название таблицы'}
+                                    value={tableName}
+                                    onChange={(e) => this.handleInputChange(e, 'tableName')}
+                                />
+                            </div>
                         </div>
-                        <div className={styles.inputName}>
-                            <Input
-                                name={'name'}
-                                placeholder={'Название таблицы'}
-                                value={tableName}
-                                onChange={(e) => this.handleInputChange(e, 'tableName')}
-                            />
-                        </div>
+
+
+
                     </div>
 
-                    {
-                        errors
-                            ? <div className={styles.inputsErrors}>
-                                <p className={styles.errorText}>{errors}</p>
-                              </div>
-                            : null
-                    }
+                    <div className={styles.buttonTable}>
+                        <Button text={'Загрузить таблицу'} pending={pending} onClick={(e) => this.handleSubmit(e)} />
+                    </div>
+
+                    <div className={styles.buttonJson}>
+                        <JsonUploader onResult={jsonData => this.props.onJsonResult(jsonData) } />
+                    </div>
+
+
+
+
 
                 </div>
 
-                <div className={styles.buttons}>
-                    <Button text={'Загрузить таблицу'} pending={pending} onClick={(e) => this.handleSubmit(e)} />
-                </div>
+
+                {
+                    errors
+                        ? <div className={styles.inputsErrors}>
+                            <p className={styles.errorText}>{errors}</p>
+                        </div>
+                        : null
+                }
+
+
 
             </form>
         );
