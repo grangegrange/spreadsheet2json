@@ -89,7 +89,13 @@ class TableLoadingForm extends Component {
                             </div>
                         </div>
 
-
+                        {
+                            errors
+                                ? <div className={styles.inputsErrors}>
+                                    <p className={styles.errorText}>{errors}</p>
+                                </div>
+                                : null
+                        }
 
                     </div>
 
@@ -101,22 +107,7 @@ class TableLoadingForm extends Component {
                         <JsonUploader onResult={jsonData => this.props.onJsonResult(jsonData) } />
                     </div>
 
-
-
-
-
                 </div>
-
-
-                {
-                    errors
-                        ? <div className={styles.inputsErrors}>
-                            <p className={styles.errorText}>{errors}</p>
-                        </div>
-                        : null
-                }
-
-
 
             </form>
         );

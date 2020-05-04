@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import styles from './App.scss';
+import ResizablePanels from "resizable-panels-react";
+import styles from './App.module.scss';
 import TableLoadingForm from './components/tableLoadingForm/TableLoadingForm';
 import Table from './components/table/Table';
 import JsonWrapper from './components/jsonWrapper/JsonWrapper';
-
 
 
 class App extends Component {
@@ -13,37 +13,67 @@ class App extends Component {
         this.state = {
             tabledData: [],
             selectedTableValue: '',
-            jsonData: {}
+            jsonData: {},
+            width: 200,
+            height: 200,
+            x: 10,
+            y: 10
         };
     };
-
 
     render() {
         const { tabledData, jsonData } = this.state;
 
         return (
-            <div className="App">
-                <div className={"wrapper"}>
+            <div className={styles.App}>
+                <div className={styles.wrapper}>
 
                     <TableLoadingForm
                         onTableResult={tabledData => this.setState({ tabledData })}
                         onJsonResult={jsonData => this.setState({ jsonData })}
                     />
 
-                    {
-                        (tabledData.length > 0)
-                            ? <Table
-                                data={tabledData}
-                                onSelect={selectedTableValue => this.setState({ selectedTableValue })}
-                              />
-                            : null
-                    }
-
-                    {
-                        (Object.keys(jsonData).length > 0)
-                            ?   <JsonWrapper data={jsonData} />
-                            :   null
-                    }
+                    <div className={styles.editors}>
+                        {
+                            ((tabledData.length > 0) || Object.keys(jsonData).length > 0)
+                                ? <ResizablePanels
+                                    bkcolor="#ffffff"
+                                    displayDirection="column"
+                                    width="100%"
+                                    height="100vh"
+                                    panelsSize={[50, 50]}
+                                    sizeUnitMeasure="%"
+                                    resizerColor="#ff9900"
+                                    resizerSize="10px"
+                                >
+                                    {
+                                        (tabledData.length > 0)
+                                            ? <Table
+                                                data={tabledData}
+                                                onSelect={selectedTableValue => this.setState({selectedTableValue})}
+                                                style={{
+                                                    background: "#ffffff",
+                                                    height: "100%",
+                                                    width: "100%"
+                                                }}
+                                            />
+                                            : <div>Загрузите таблицу</div>
+                                    }
+                                    {
+                                        (Object.keys(jsonData).length > 0)
+                                            ?   <JsonWrapper
+                                                data={jsonData}
+                                                style={{
+                                                    background: "#ffffff",
+                                                    height: "100%"
+                                                }}
+                                            />
+                                            :   <div>Загрузите JSON</div>
+                                    }
+                                </ResizablePanels>
+                                : null
+                        }
+                    </div>
 
                 </div>
             </div>

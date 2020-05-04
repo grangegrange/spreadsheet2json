@@ -4,7 +4,7 @@ import styles from './JsonWrapper.module.scss';
 
 function JsonWrapper(props) {
     return (
-        <div className={styles.jsonWrapper}>
+        <div className={styles.jsonWrapper} style={{height: props.height}}>
             <div className={styles.jsonWrapperHeader}>
                 Итоговый JSON:
             </div>

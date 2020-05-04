@@ -1,0 +1,22 @@
+.App {
+  background-color: #c4d3f6;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .wrapper {
+    display: flex;
+    padding: 0;
+    height: 100%;
+
+    .editors {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 320px);
+      height: 100vh;
+    }
+  }
+
+}
+
+

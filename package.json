@@ -10,7 +10,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-json-editor-viewer": "^1.0.7",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "resizable-panels-react": "^2.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
