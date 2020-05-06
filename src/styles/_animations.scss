@@ -1,0 +1,9 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes moveDown {
+  from { margin-top: -10px; }
+  to   { margin-top: 0; }
+}

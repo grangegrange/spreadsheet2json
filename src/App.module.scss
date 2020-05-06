@@ -1,22 +1,76 @@
+@import 'styles/_fonts.scss';
+@import 'styles/_colors.scss';
+@import 'styles/_animations.scss';
+
 .App {
   background-color: #c4d3f6;
   width: 100%;
   min-height: 100vh;
+  font-family: Montserrat-Regular;
   overflow: hidden;
 
   .wrapper {
     display: flex;
-    padding: 0;
     height: 100%;
+    padding: 0;
 
     .editors {
       display: flex;
-      flex-direction: column;
       width: calc(100% - 320px);
       height: 100vh;
+      flex-direction: column;
+      animation: fadeIn .5s, moveDown .5s;
+
+      .editorIsEmpty {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        line-height: 100%;
+        color: $blue;
+        animation: fadeIn .5s, moveDown .5s;
+      }
+
+      div:nth-child(2) {
+        position: relative;
+        display: block;
+      }
+        div:nth-child(2):before {
+          position: absolute;
+          display: block;
+          content: '...';
+          left: 50%;
+          margin-left: -20px;
+          bottom: -6px;
+          width: 40px;
+          height: 11px;
+          border: 2px solid $blue;
+          border-radius: 4px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          font-size: 24px;
+          line-height: 100%;
+          font-weight: 800;
+          color: $blue;
+          z-index: 1000;
+          background-color: #ffffff;
+        }
+
     }
   }
 
 }
 
 
+// TODO: animation mixin
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes moveDown {
+  from { margin-top: -10px; }
+  to   { margin-top: 0; }
+}

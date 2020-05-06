@@ -1,10 +1,13 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_animations.scss';
+
 .tableLoadingForm {
   width: 320px;
   height: 100%;
   min-height: 100vh;
   padding: 20px;
   background-color: #ffffff;
-  box-shadow: 2px 2px 2px #999999;
+  box-shadow: 2px 2px 5px $grey;
   animation: fadeIn .5s, moveDown .5s;
   box-sizing: border-box;
   z-index: 100;
@@ -33,11 +36,7 @@
           width: 100%;
           margin-top: 10px;
         }
-
       }
-
-
-
     }
 
     .buttonTable {
@@ -48,8 +47,6 @@
       display: flex;
       width: 100%;
     }
-
-
   }
 
 
@@ -60,22 +57,10 @@
       margin: 0;
       font-size: 14px;
       line-height: 100%;
-      color: #fb796a;
+      color: $red;
+      word-wrap: break-word;
+      animation: fadeIn .5s, moveDown .5s;
     }
   }
 
-
-
-}
-
-
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes moveDown {
-  from { margin-top: -10px; }
-  to   { margin-top: 0; }
 }

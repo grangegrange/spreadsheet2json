@@ -1,14 +1,12 @@
+@import '../../styles/_animations.scss';
+
 .tableWrapper {
-  //width: 1000px;
-  //margin: 0 auto 0;
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 0;
   background-color: #ffffff;
-  //border-radius: 10px;
-  //box-shadow: 2px 2px 2px #999999;
   animation: fadeIn .5s, moveDown .5s;
-  //max-height: 500px;
   overflow: scroll;
 
   .table {
@@ -16,33 +14,33 @@
     border-spacing: 0;
 
     .tableHeader {
+      width: 100%;
       background-color: #6c7ae0;
-      //border-top-left-radius: 10px;
-      //border-top-right-radius: 10px;
 
       .tableHeaderRow {
-        //border-top-left-radius: 10px;
-        //border-top-right-radius: 10px;
+        width: 100%;
+        display: flex;
 
         .tableHeaderCell {
+          //display: inline-block;
+
+          max-width: 150px;
+          width: 150px;
           padding: 15px 20px;
           text-align: left;
           color: #ffffff;
 
-          //&:nth-child(1){
-          //  border-top-left-radius: 10px;
-          //}
-          //&:nth-last-child(1){
-          //  border-top-right-radius: 10px;
-          //}
         }
       }
     }
 
     .tableRow {
+      display: flex;
 
       .tableCell {
-        max-width: 100px;
+        max-width: 150px;
+        width: 150px;
+        //max-width: 100px;
         overflow-x: scroll;
         white-space: nowrap;
         padding: 15px 20px;
@@ -53,17 +51,4 @@
 
   }
 
-}
-
-
-
-// TODO: animations in mixin
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes moveDown {
-  from { margin-top: -10px; }
-  to   { margin-top: 0; }
 }
