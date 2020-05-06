@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styles from './TableLoadingForm.module.scss';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import JsonUploader from '../jsonUploader/JsonUploader'
-
+import JsonUploader from '../jsonUploader/JsonUploader';
+import ValuesChangingPanel from '../valuesChangingPanel/ValuesChangingPanel';
 
 class TableLoadingForm extends Component {
 
@@ -14,6 +14,7 @@ class TableLoadingForm extends Component {
             tableLink: '',
             tableName: '',
             pending: false,
+            showValuesPanel: false,
             errors: ''
         };
 
@@ -46,27 +47,28 @@ class TableLoadingForm extends Component {
             .then(data => {
                 if (data && data.valueRanges) {
                     this.props.onTableResult(data.valueRanges[0].values)
-                    this.setState({ pending: false })
+                    this.setState({ pending: false, showValuesPanel: true })
                 } else {
                     this.props.onTableResult([])
-                    this.setState({ errors: 'Ошибка загрузки. Проверьте ссылку и название таблицы', pending: false })
+                    this.setState({ errors: 'Ошибка загрузки. Проверьте ссылку и название таблицы', pending: false, showValuesPanel: false })
                 }
             })
             .catch(error => {
                 console.log('err:', error);
-                this.setState({ errors: error });
+                this.setState({ errors: error, showValuesPanel: false });
             });
 
     };
 
 
     render() {
-        const { tableLink, tableName, pending, errors } = this.state;
+        const { tableLink, tableName, pending, showValuesPanel, errors } = this.state;
+        const { jsonData, tableValue, tableDataLength } = this.props;
 
         return (
-            <form className={styles.tableLoadingForm} onSubmit={(e) => this.handleSubmit(e)}>
+            <div className={styles.tableLoadingForm}>
 
-                <div className={styles.tableLoadingFormWrapper}>
+                <form className={styles.tableLoadingFormWrapper} onSubmit={(e) => this.handleSubmit(e)}>
 
                     <div className={styles.inputs}>
 
@@ -107,9 +109,16 @@ class TableLoadingForm extends Component {
                         <JsonUploader onResult={jsonData => this.props.onJsonResult(jsonData) } />
                     </div>
 
-                </div>
+                </form>
 
-            </form>
+                {
+                    showValuesPanel
+                        ? <ValuesChangingPanel jsonData={jsonData} tableValue={tableValue} tableDataLength={tableDataLength} />
+                        : null
+                }
+
+
+            </div>
         );
     }
 }
