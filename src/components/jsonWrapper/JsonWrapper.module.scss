@@ -1,11 +1,14 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_animations.scss';
+
 .jsonWrapper {
   height: 100%;
-  background-color: #ffffff;
+  background-color: $white;
   animation: fadeIn .5s, moveDown .5s;
 
   .jsonWrapperHeader {
     padding: 15px 20px;
-    background-color: #6c7ae0;
+    background-color: $blue;
     color: #ffffff;
     font-weight: 600;
   }
@@ -15,17 +18,4 @@
     padding: 10px 20px 30px;
   }
 
-}
-
-
-
-// TODO: animation mixin
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes moveDown {
-  from { margin-top: -10px; }
-  to   { margin-top: 0; }
 }

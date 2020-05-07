@@ -1,7 +1,84 @@
-.resultJsonValue {
-  color: #999999;
+@import '../../styles/_colors.scss';
+@import '../../styles/_animations.scss';
+
+.panel {
+  width: 100%;
+  .panelTitle {
+    margin: 50px 0 0 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 400;
+    color: $blue;
+    text-align: center;
+    animation: fadeIn .5s;
+  }
+
+  .panelSubtitle {
+    display: block;
+    margin: 50px 0 5px 0;
+    padding: 0;
+    font-size: 16px;
+
+  }
+
+  .panelTableValues {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    animation: fadeIn .5s, moveDown .5s;
+    .panelTableValue {
+      padding: 10px;
+      line-height: 100%;
+      background-color: $grey-light;
+    }
+  }
+
+  .panelJsonValuesWrapper {
+    animation: fadeIn .5s, moveDown .5s;
+    .panelSubtitle {
+      margin-top: 30px;
+    }
+    .panelJsonValues {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .panelJsonValue {
+        padding: 10px;
+        line-height: 100%;
+        background-color: $grey-light;
+        cursor: pointer;
+        &.panelJsonValueSelected {
+          background-color: $blue;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  // TODO: mixin
+  .panelJsonDownload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    margin-top: 50px;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 100%;
+    color: $white;
+    background-color: $blue;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    border: 1px solid $blue;
+    border-radius: 5px;
+    animation: fadeIn .5s, moveDown .5s;
+  }
+
 }
 
-.resultJsonValueSelected {
-  color: #ff9900;
-}
+
+
+
+

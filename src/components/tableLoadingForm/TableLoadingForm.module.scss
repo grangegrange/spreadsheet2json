@@ -5,7 +5,6 @@
   width: 320px;
   height: 100vh;
   overflow-x: scroll;
-  //min-height: 100vh;
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 2px 2px 5px $grey;
@@ -18,7 +17,6 @@
     justify-content: flex-start;
     flex-direction: column;
     width: 100%;
-    //height: 100%;
 
     .inputs {
       display: flex;
@@ -49,7 +47,6 @@
       width: 100%;
     }
   }
-
 
   .inputsErrors {
     margin-top: 10px;

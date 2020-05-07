@@ -32,11 +32,11 @@
         animation: fadeIn .5s, moveDown .5s;
       }
 
-      div:nth-child(2) {
+      > div > div:nth-child(2) {
         position: relative;
         display: block;
       }
-        div:nth-child(2):before {
+      > div > div:nth-child(2):before {
           position: absolute;
           display: block;
           content: '...';
@@ -61,16 +61,4 @@
     }
   }
 
-}
-
-
-// TODO: animation mixin
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes moveDown {
-  from { margin-top: -10px; }
-  to   { margin-top: 0; }
 }

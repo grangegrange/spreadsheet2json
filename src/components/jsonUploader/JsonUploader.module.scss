@@ -1,3 +1,5 @@
+@import '../../styles/_colors.scss';
+
 .uploadArea {
   width: 100%;
   margin-top: 40px;
@@ -10,12 +12,12 @@
     height: 40px;
     font-size: 18px;
     line-height: 100%;
-    color: #ffffff;
-    background-color: #6c7ae0;
+    color: $white;
+    background-color: $blue;
     cursor: pointer;
     outline: none;
     text-decoration: none;
-    border: 1px solid #6c7ae0;
+    border: 1px solid $blue;
     border-radius: 5px;
 
 
@@ -46,14 +48,3 @@
 
 }
 
-
-// TODO: animation mixin
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes moveDown {
-  from { margin-top: -10px; }
-  to   { margin-top: 0; }
-}

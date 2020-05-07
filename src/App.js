@@ -13,12 +13,29 @@ class App extends Component {
         this.state = {
             tabledData: [],
             selectedTableValue: '',
-            jsonData: {},
-            width: 200,
-            height: 200,
-            x: 10,
-            y: 10
+            jsonData: {}
         };
+    };
+
+
+    handleJsonValuesChange = (value, selectedJsonValue) => {
+
+        const newJsonValues = {...value, [selectedJsonValue]: this.state.selectedTableValue };
+        const newJsonTemplate = {...this.state.jsonData};
+
+        const newJsonMainTemplate = newJsonTemplate["Main"].reduce((acc, rec) => {
+            const prevIndex = Object.values(value).indexOf(rec.Values);
+            const curIndex = Object.values(newJsonValues).indexOf(rec.Values);
+            if (prevIndex !== curIndex) {
+                return [...acc, {...rec, Values: newJsonValues[prevIndex] }];
+            }
+            return [...acc, rec];
+        }, []);
+
+        newJsonTemplate["Main"] = newJsonMainTemplate;
+
+        this.setState({ jsonData: newJsonTemplate });
+
     };
 
     render() {
@@ -34,6 +51,7 @@ class App extends Component {
                         tableValue={selectedTableValue}
                         jsonData={jsonData}
                         tableDataLength={tabledData.length}
+                        handleJsonValuesChange={(jsonData, selectedJsonValue) => this.handleJsonValuesChange(jsonData, selectedJsonValue)}
                     />
 
                     <div className={styles.editors}>

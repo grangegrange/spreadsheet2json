@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Base64 } from 'js-base64';
 import styles from './ValuesChangingPanel.module.scss';
+import Button from '../button/Button';
 
 function ValuesChangingPanel(props) {
 
@@ -24,33 +26,56 @@ function ValuesChangingPanel(props) {
             {
                 props.tableDataLength >= 0
                     ? <div>
-                        <h3 className={styles.panelTitle}>Выберите значение в таблице:</h3>
+                        {
+                            !props.tableValue
+                                ? <h3 className={styles.panelTitle}>Выберите значение в таблице</h3>
+                                : null
+                        }
+
                         {
                             props.tableValue
-                                ? <div className={styles.valuesTable}>
-                                    <p>Меняем значение из таблицы:</p>
-                                    <code className={styles.valueTable}>{props.tableValue}</code>
+                                ? <div className={styles.panelTableValues}>
+                                    <p className={styles.panelSubtitle}>Меняем значение из таблицы:</p>
+                                    <code className={styles.panelTableValue}>{props.tableValue}</code>
                                   </div>
                                 : null
                         }
                         {
                             Object.keys(jsonValues).length > 0 && props.tableValue
-                                ? <div className={styles.valuesListJson}>
-                                        <p>На значение из json:</p>
+                                ? <div className={styles.panelJsonValuesWrapper}>
+                                        <p className={styles.panelSubtitle}>На значение из json:</p>
+                                        <div className={styles.panelJsonValues}>
                                         {
                                             Object.values(jsonValues).map((item, i) => (
                                                 <code
                                                     key={`json-value-${i}`}
                                                     data-id={i}
                                                     data-value={item}
-                                                    className={ (i === selectedJsonValue) ? `${styles.resultJsonValue} ${styles.resultJsonValueSelected}` : `${styles.resultJsonValue}`}
+                                                    className={ (i === selectedJsonValue) ? `${styles.panelJsonValue} ${styles.panelJsonValueSelected}` : `${styles.panelJsonValue}`}
                                                     onClick={() => { setSelectedJsonValue(i) }}
                                                 >
                                                     {item}
                                                 </code>
                                             ))
                                         }
+                                        </div>
                                     </div>
+                                : null
+                        }
+                        {
+                            selectedJsonValue >= 0
+                                ? <Button text={'Заменить значения'} onClick={() => props.handleJsonValuesChange(jsonValues, selectedJsonValue)} />
+                                : null
+                        }
+                        {
+                            Object.keys(jsonValues).length > 0 && props.tableValue
+                                ? <a
+                                    download={"template-edited.json"}
+                                    href={`data:application/octet-stream;base64,${Base64.encode(JSON.stringify(props.jsonData))}`}
+                                    className={styles.panelJsonDownload}
+                                  >
+                                    Скачать JSON
+                                  </a>
                                 : null
                         }
                     </div>

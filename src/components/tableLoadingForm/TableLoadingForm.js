@@ -113,7 +113,12 @@ class TableLoadingForm extends Component {
 
                 {
                     showValuesPanel
-                        ? <ValuesChangingPanel jsonData={jsonData} tableValue={tableValue} tableDataLength={tableDataLength} />
+                        ? <ValuesChangingPanel
+                            jsonData={jsonData}
+                            tableValue={tableValue}
+                            tableDataLength={tableDataLength}
+                            handleJsonValuesChange={(jsonData, selectedJsonValue) => this.props.handleJsonValuesChange(jsonData, selectedJsonValue)}
+                          />
                         : null
                 }
 
