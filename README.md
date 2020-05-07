@@ -17,7 +17,7 @@ https://docs.google.com/spreadsheets/d/19Dus79rjiH2WIwDzwnOByMMXo1boFt9ASC7CX4u7
 1
 ```
 
-Пример JSON-файла находится в корневом разделе репозитория: `example.json`.
+Пример JSON-файла находится в корневом разделе репозитория: [example.json](https://github.com/grangegrange/spreadsheet2json/blob/master/example.json).
 
 
 
@@ -27,8 +27,13 @@ https://docs.google.com/spreadsheets/d/19Dus79rjiH2WIwDzwnOByMMXo1boFt9ASC7CX4u7
 
 Склонируйте репозиторий:
 ```
-git clone 
+git clone https://github.com/grangegrange/spreadsheet2json.git
 ```    
+
+Перейдите в директорию с проектом:
+```
+cd spreadsheet2json/
+```
   
 Установите зависимости:
 ```
